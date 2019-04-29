@@ -15,7 +15,7 @@ var mongoose = require('mongoose');
 
 
 // Online DB// Local DB
-mongoose.connect('mongodb+srv://jegindfeldt@gmail.com:kenneth92@@cluster0-f3idh.mongodb.net/mandatory?retryWrites=true2');
+mongoose.connect('mongodb+srv://admin:kenneth92@@cluster0-f3idh.mongodb.net/mandatory?retryWrites=true2');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
