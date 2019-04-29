@@ -177,10 +177,6 @@ app.get('/data/:id', (req, res) => {
 
 });
 
-//Reroute all unknown requests to the React index.html 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
- }); 
 
 
 app.listen(port, () => console.log(`Mandatory QA API kører på: ${port}!`))
