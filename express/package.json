@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
   },
   "description": "Small template for developing an express.js/angular 2+ application",
   "engines": {
