@@ -34,7 +34,7 @@ class VoteButton extends React.Component {
 
     voteOnAnswer() {
         let { answer, id } = this.props
-        fetch('http://localhost:8081/votes/' + id, {
+        fetch('https://thenewstackoverflow.herokuapp.com/votes/' + id, {
             method: 'post',
             body: JSON.stringify({
                answerId: answer._id,
