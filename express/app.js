@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname, '../build')));
 
 
 /****** Configuration *****/
@@ -35,6 +35,13 @@ app.use((req, res, next) => {
         next();
     }
 });
+
+
+/**** Reroute all unknown requests to the React index.html ****/
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+  });
+
 
 /****** Schema - Database *****/
 
