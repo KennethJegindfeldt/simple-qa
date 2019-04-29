@@ -27,7 +27,7 @@ class App extends Component {
 
 
     componentDidMount(){
-        fetch('https://thenewstackoverflow.herokuapp.com/api/')
+        fetch('https://thenewstackoverflow.herokuapp.com')
             .then(response => { return response.json()})
             .then(data => this.setState({qas: data}))
             .catch(err => console.error(err))
@@ -35,7 +35,7 @@ class App extends Component {
 
 
     addQuestion(name, questions) {
-        fetch('https://thenewstackoverflow.herokuapp.com/api/NewQuestion/', {
+        fetch('https://thenewstackoverflow.herokuapp.com/NewQuestion/', {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -55,7 +55,7 @@ class App extends Component {
 
 
     addAnswers(answers, id) {
-        fetch('https://thenewstackoverflow.herokuapp.com/api/answers/' + id, {
+        fetch('https://thenewstackoverflow.herokuapp.com/answers/' + id, {
             method: 'post',
             body: JSON.stringify({
                 answers: answers,
