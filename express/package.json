@@ -1,7 +1,7 @@
 {
-  "name": "mandatory_qa_api",
+  "name": "cooking_recipe_api",
   "version": "1.0.0",
-  "description": "Simple API",
+  "description": "Small template for developing an express.js/angular 2+ application",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  },
+  "engines": {
+    "node": "10.8.0",
+    "npm": "6.4.1"
   }
 }
