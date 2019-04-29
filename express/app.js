@@ -14,10 +14,14 @@ const port = (process.env.PORT || 8081);
 var mongoose = require('mongoose');
 
 // Local DB
-mongoose.connect('mongodb://localhost/db_mandatory_qa');
+mongoose.connect('mongodb+srv://jegindfeldt@gmail.com:klythaha@92@cluster0-f3idh.mongodb.net/mandatory?retryWrites=true2');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+
+
+// Online DB
+
 
 // Additional headers to avoid triggering CORS security errors in the browser
 // Read more: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
@@ -38,10 +42,10 @@ app.use((req, res, next) => {
 });
 
 
-/**** Reroute all unknown requests to the React index.html ****/
+/**** Reroute all unknown requests to the React index.html ***
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'));
-  });
+  }); 
 
 
 /****** Schema - Database *****/
