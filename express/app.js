@@ -13,14 +13,14 @@ const port = (process.env.PORT || 8081);
 /****** Database *****/
 var mongoose = require('mongoose');
 
-// Local DB
-mongoose.connect('mongodb+srv://jegindfeldt@gmail.com:klythaha@92@cluster0-f3idh.mongodb.net/mandatory?retryWrites=true2');
+
+// Online DB// Local DB
+mongoose.connect('mongodb+srv://jegindfeldt@gmail.com:kenneth1992@@cluster0-f3idh.mongodb.net/mandatory?retryWrites=true2');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 
-// Online DB
 
 
 // Additional headers to avoid triggering CORS security errors in the browser
