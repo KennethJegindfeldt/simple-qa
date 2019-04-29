@@ -27,7 +27,7 @@ class App extends Component {
 
 
     componentDidMount(){
-        fetch('http://localhost:8081')
+        fetch('https://thenewstackoverflow.herokuapp.com/8081')
             .then(response => { return response.json()})
             .then(data => this.setState({qas: data}))
             .catch(err => console.error(err))
