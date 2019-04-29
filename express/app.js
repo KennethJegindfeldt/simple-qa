@@ -69,7 +69,7 @@ var questions = mongoose.model('questions', qasSchema);
 
 
 // -------- ADD NEW QUESTION
-app.post('/api/NewQuestion', (req, res, next) => {
+app.post('/NewQuestion', (req, res, next) => {
     var NewQuestion = new questions(req.body)
     NewQuestion.save(function (err, NewQuestion) {
         if (err) { return next(err) }
@@ -80,7 +80,7 @@ app.post('/api/NewQuestion', (req, res, next) => {
 
 
 // -------- GET ANSWERS BY ID
-app.post('/api/answers/:id', async (req, res) => {
+app.post('/answers/:id', async (req, res) => {
     console.log(req.body)
     const answer = {answers:req.body.answers, votes:0};
 
@@ -107,7 +107,7 @@ app.post('/api/answers/:id', async (req, res) => {
 });
 
 // -------- GET VOTE BY ID
-app.post('/api/votes/:id', async (req, res) => {
+app.post('/votes/:id', async (req, res) => {
     const {answerId, count} = req.body;
 
     const question = await questions.findOne(
@@ -145,7 +145,7 @@ app.post('/api/votes/:id', async (req, res) => {
 
 
 // ------- GET QUESTIONS
-app.get("/api/questions", (req, res) => {
+app.get("/questions", (req, res) => {
     questions.find({}, (err, questions) => {
         res.send(questions)
     })
@@ -153,7 +153,7 @@ app.get("/api/questions", (req, res) => {
 
 
 // ------- GET ANSWERS
-app.get("/api/answers", (req, res) => {
+app.get("/answers", (req, res) => {
     answers.find({}, (err, answers) => {
         res.send(answers)
     })
