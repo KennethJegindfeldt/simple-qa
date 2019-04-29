@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 
-/**** Reroute all unknown requests to the React index.html ***
+//Reroute all unknown requests to the React index.html 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'));
   }); 
