@@ -35,7 +35,7 @@ class App extends Component {
 
 
     addQuestion(name, questions) {
-        fetch('http://localhost:8081/NewQuestion', {
+        fetch('https://thenewstackoverflow.herokuapp.com/NewQuestion', {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -55,7 +55,7 @@ class App extends Component {
 
 
     addAnswers(answers, id) {
-        fetch('http://localhost:8081/answers/' + id, {
+        fetch('https://thenewstackoverflow.herokuapp.com/answers/' + id, {
             method: 'post',
             body: JSON.stringify({
                 answers: answers,
