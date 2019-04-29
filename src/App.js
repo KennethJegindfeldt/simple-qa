@@ -55,7 +55,7 @@ class App extends Component {
 
 
     addAnswers(answers, id) {
-        fetch('https://thenewstackoverflow.herokuapp.com/answers' + id, {
+        fetch('https://thenewstackoverflow.herokuapp.com/answers/' + id, {
             method: 'post',
             body: JSON.stringify({
                 answers: answers,
