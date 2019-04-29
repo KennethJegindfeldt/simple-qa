@@ -28,7 +28,7 @@ class App extends Component {
 
     componentDidMount(){
         fetch('https://thenewstackoverflow.herokuapp.com/express')
-            .then(response => return response.json())
+            .then(response => {return response.json()})
             .then(data => this.setState({qas: data}))
             .catch(err => console.error(err))
     }
