@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import io from 'socket.io-client'; 
 import QuestionList from "./QuestionList";
 import Question from "./Question";
 import NotFound from "./NotFound";
@@ -23,10 +23,33 @@ class App extends Component {
 
         };
 
+        this.addQuestion = this.addQuestion.bind(this);
+        this.addAnswers = this.addAnswers.bind(this);
+
     }
 
 
-    componentDidMount(){
+    SOCKET_URL = 'http://localhost:8081/my_app';
+
+    componentDidMount() {
+
+        const socket = io(this.SOCKET_URL);
+
+        socket.on('connect',() => {
+            console.log("connected to socket.io");
+            socket.emit('Hello', "Signe" , "howdy");
+        });
+
+        socket.on('new-data', (questions) => {
+            console.log(`server msg: ${questions.msg}`);
+            this.getData();
+           /* Lav en getdata funktion her og indsæt din fetch i en get data funktion */
+        });
+        this.getData();
+    }
+
+
+    getData(){
         fetch(`${this.api_url}/questions`)
             .then(response => {return response.json()})
             .then(data => this.setState({qas: data}))

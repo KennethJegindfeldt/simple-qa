@@ -6,7 +6,6 @@ const app = express();
 app.use(bodyParser.json());
 
 
-
 /****** Configuration *****/
 const port = (process.env.PORT || 8081);
 app.use(express.static(path.join(__dirname, '../build')));
@@ -17,6 +16,23 @@ var mongoose = require('mongoose');
 
 // Online DB// Local DB
 mongoose.connect('mongodb+srv://admin:kenneth1992@cluster0-f3idh.mongodb.net/Mandatory?retryWrites=true');
+
+
+/****** socket.io *****/
+
+const server = app.listen(port,
+    () => console.log(`Some app running on port ${port}`));
+
+const  io = require('socket.io').listen(server);
+
+io.of('/my_app').on('connection', function (socket){
+    socket.on('hello', function (from, msg) {
+        console.log(`I received a private message from '${from}' saying '${msg}'`);
+    });
+    socket.on('disconnect', () => {
+        console.log("someone disconnected");
+    });
+});
 
 
 // Additional headers to avoid triggering CORS security errors in the browser
@@ -63,6 +79,11 @@ var questions = mongoose.model('questions', qasSchema);
 app.post('/api/NewQuestion', (req, res, next) => {
     var NewQuestion = new questions(req.body)
     NewQuestion.save(function (err, NewQuestion) {
+
+        io.of('/my_app').emit('new-data', {
+            msg: 'New data is available on /api/my_data'
+        });
+
         if (err) { return next(err) }
         res.json(201, NewQuestion);
         console.log("Et nyt question er tilføjet");
@@ -81,6 +102,11 @@ app.post('/api/answers/:id', async (req, res) => {
         (err, docs) => {
             console.log(docs)
             docs.answers.push(answer)
+
+            io.of('/my_app').emit('new-data', {
+                msg: 'New data is available on /api/my_data'
+            });
+
             docs.save()
         }
 
@@ -183,6 +209,6 @@ app.get('/*', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Mandatory QA API kører på: ${port}!`))
+// app.listen(port, () => console.log(`Mandatory QA API kører på: ${port}!`))
 
 
