@@ -30,7 +30,7 @@ io.of('/my_app').on('connection', function (socket){
         console.log(`I received a private message from '${from}' saying '${msg}'`);
     });
     socket.on('disconnect', () => {
-        console.log("someone disconnected");
+        console.log("Someone disconnected");
     });
 });
 
@@ -103,7 +103,7 @@ app.post('/api/answers/:id', async (req, res) => {
             console.log(docs)
             docs.answers.push(answer)
 
-            io.of('/my_app').emit('new-data', {
+            io.of('/api/my_app').emit('new-data', {
                 msg: 'New data is available on /api/my_data'
             });
 
