@@ -139,9 +139,7 @@ app.post('/api/votes/:id', async (req, res) => {
                 }
 
             })
-
-
-
+            
             docs.save()
         }
 
