@@ -50,12 +50,10 @@ class App extends Component {
 
 
     async getData(){
-        let res = await fetch(`${this.api_url}/questions`)
-        res = await res.json()
-        console.log(res)
-            // .then(response => {return response.json()})
-            // .then(data => this.setState({qas: data}))
-            // .catch(err => console.error(err))
+        fetch(`${this.api_url}/questions`)
+            .then(response => {return response.json()})
+            .then(data => this.setState({qas: data}))
+            .catch(err => console.error(err))
     }
 
 
