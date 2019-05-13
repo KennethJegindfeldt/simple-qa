@@ -8,7 +8,7 @@ class QuestionList extends Component {
 
         this.props.qas.forEach((elm) => {
             questionList.push(
-                <div class="front-question-boxs">
+                <div class="front-question-box">
                     <li>
                         <h3>{elm.name}</h3>
                         <p>{elm.questions}</p>
