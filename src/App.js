@@ -29,14 +29,14 @@ class App extends Component {
     }
 
 
-    SOCKET_URL = 'http://localhost:8081/my_app';
+    SOCKET_URL = `${this.api_url}/my_app`;
 
     componentDidMount() {
 
         const socket = io(this.SOCKET_URL);
 
         socket.on('connect',() => {
-            console.log("connected to socket.io");
+            console.log("Connected to socket.io");
             socket.emit('Hello', "Signe" , "howdy");
         });
 
