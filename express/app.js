@@ -4,12 +4,12 @@ const path = require('path');
 require('dotenv').config();
 const app = express();
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../build')));
+
 
 
 /****** Configuration *****/
 const port = (process.env.PORT || 8081);
-
+app.use(express.static(path.join(__dirname, '../build')));
 
 /****** Database *****/
 var mongoose = require('mongoose');
@@ -60,7 +60,7 @@ var questions = mongoose.model('questions', qasSchema);
 
 
 // -------- ADD NEW QUESTION
-app.post('/NewQuestion', (req, res, next) => {
+app.post('/api/NewQuestion', (req, res, next) => {
     var NewQuestion = new questions(req.body)
     NewQuestion.save(function (err, NewQuestion) {
         if (err) { return next(err) }
@@ -71,7 +71,7 @@ app.post('/NewQuestion', (req, res, next) => {
 
 
 // -------- GET ANSWERS BY ID
-app.post('/answers/:id', async (req, res) => {
+app.post('/api/answers/:id', async (req, res) => {
     console.log(req.body)
     const answer = {answers:req.body.answers, votes:0};
 
@@ -98,7 +98,7 @@ app.post('/answers/:id', async (req, res) => {
 });
 
 // -------- GET VOTE BY ID
-app.post('/votes/:id', async (req, res) => {
+app.post('/api/votes/:id', async (req, res) => {
     const {answerId, count} = req.body;
 
     const question = await questions.findOne(
@@ -136,7 +136,7 @@ app.post('/votes/:id', async (req, res) => {
 
 
 // ------- GET QUESTIONS
-app.get("/questions", (req, res) => {
+app.get("/api/questions", (req, res) => {
     questions.find({}, (err, questions) => {
         res.send(questions)
     })
@@ -144,14 +144,14 @@ app.get("/questions", (req, res) => {
 
 
 // ------- GET ANSWERS
-app.get("/answers", (req, res) => {
+app.get("/api/answers", (req, res) => {
     answers.find({}, (err, answers) => {
         res.send(answers)
     })
 })
 
 /****** Routes *****/
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     questions.find(function (err, data) {
         if (err) return console.error(err);
         res.status(200).json(data)

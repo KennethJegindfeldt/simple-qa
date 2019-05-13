@@ -4,15 +4,17 @@
   "private": true,
   "dependencies": {
     "create-react-app": "^2.1.8",
+    "jest-dom": "^3.2.2",
     "mongoose": "^5.4.19",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^2.1.8",
+    "react-testing-library": "^7.0.0"
   },
   "scripts": {
     "start": "cd express && node app.js",
-   "start:dev": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -26,5 +28,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {}
 }

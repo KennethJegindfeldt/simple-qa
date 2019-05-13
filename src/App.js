@@ -11,7 +11,7 @@ import NewAnswers from "./NewAnswers";
 
 class App extends Component {
 
-
+    api_url = process.env.REACT_APP_API_URL;
 
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ class App extends Component {
 
 
     componentDidMount(){
-        fetch('https://thenewstackoverflow.herokuapp.com/questions')
+        fetch(`${this.api_url}/questions`)
             .then(response => {return response.json()})
             .then(data => this.setState({qas: data}))
             .catch(err => console.error(err))
@@ -35,7 +35,7 @@ class App extends Component {
 
 
     addQuestion(name, questions) {
-        fetch('https://thenewstackoverflow.herokuapp.com/NewQuestion', {
+        fetch(`${this.api_url}/NewQuestion`, {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -55,7 +55,7 @@ class App extends Component {
 
 
     addAnswers(answers, id) {
-        fetch('https://thenewstackoverflow.herokuapp.com/answers/' + id, {
+        fetch(`${this.api_url}/answers/${id}`, {
             method: 'post',
             body: JSON.stringify({
                 answers: answers,
