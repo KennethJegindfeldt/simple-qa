@@ -185,7 +185,7 @@ app.get('/api/', (req, res) => {
     });
 })
 
-app.get('/data/:id', (req, res) => {
+app.get('/api/data/:id', (req, res) => {
 
     const { id } = req.params;
     const question = data.filter((data) => data.id == id)[0];
