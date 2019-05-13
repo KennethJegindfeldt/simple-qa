@@ -80,7 +80,7 @@ app.post('/api/NewQuestion', (req, res, next) => {
     var NewQuestion = new questions(req.body)
     NewQuestion.save(function (err, NewQuestion) {
 
-        io.of('/my_app').emit('new-data', {
+        io.of('/api/my_app').emit('new-data', {
             msg: 'New data is available on /api/my_data'
         });
 
